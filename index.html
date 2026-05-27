@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAR Hand Tracking - Deteksi Jari</title>
+    
+    <!-- Mengimport A-Frame (Library Grafis 3D) -->
+    <script src="https://aframe.io"></script>
+    
+    <!-- Mengimport MindAR versi Hand Tracking terbaru -->
+    <script src="https://jsdelivr.net"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        /* Teks info di layar */
+        #ui-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- UI Informasi Atas Layar -->
+    <div id="ui-container">
+        <h3 style="margin: 0 0 5px 0;">WebAR Hand Tracking</h3>
+        <p style="margin: 0; font-size: 14px;">Arahkan tangan ke kamera untuk melihat titik AR</p>
+    </div>
+
+    <!-- Inisialisasi Environment WebAR MindAR -->
+    <a-scene mindar-hand="maxTrack: 1; missTolerance: 5" 
+             color-space="sRGB" 
+             renderer="colorManagement: true, physicallyCorrectLights: true" 
+             vr-mode-ui="enabled: false" 
+             device-orientation-permission-ui="enabled: false">
+        
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+        <!-- TARGET 1: Menggambar bola merah di Ujung Jari Telunjuk (Anchor Index: 8) -->
+        
+            <a-sphere radius="0.015" color="#FF0000" shadow></a-sphere>
+        
+
+        <!-- TARGET 2: Menggambar bola biru di Ujung Jari Tengah (Anchor Index: 12) -->
+        
+            <a-sphere radius="0.015" color="#0000FF" shadow></a-sphere>
+        
+
+    </a-scene>
+
+</body>
+</html>
